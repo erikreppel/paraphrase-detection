@@ -13,15 +13,22 @@ import torch.optim as optim
 from preprocess import prep_sentence_couples
 from model import SiameseRNN
 
+from tensorboard_logger import configure, log_value
+
 
 # Variables ###################################################################
+# Paths
 checkpoint_path = '/home/erik/Desktop/sia_checkpoints'
 train_path = '../small_data/train.csv'
 test_path = '../small_data/test.csv'
+tensor_board_log_dir = '/home/erik/Desktop/sia_logs'
+
 lr = 20
 batch_size = 32
 USE_GPU = True
 start = str(time())
+configure(tensor_board_log_dir)
+
 
 # Pre-process data ############################################################
 print('Pre-processing data')
@@ -41,6 +48,7 @@ X_test1, X_test2 = prep_sentence_couples(test['str1'],
 
 y_train = train['paraphrase'].values
 y_test = test['paraphrase'].values
+
 
 # pytorch-ify the vectors######################################################
 X_train1 = torch.from_numpy(X_train1).float()
@@ -155,6 +163,14 @@ def checkpoint(epoch, model):
         torch.save(model, f)
 
 
+def tensor_log(epoch, eval_stats, train_loss):
+    log_value('total_train_loss', train_loss, epoch)
+    log_value('total_eval_loss', eval_stats['total_loss'], epoch)
+    log_value('avg_accuracy', eval_stats['avg_acc'], epoch)
+    log_value('std', eval_stats['std_of_answer'], epoch)
+    log_value('avg_loss', eval_stats['avg_loss'], epoch)
+
+
 best_val_loss = None
 
 print('Starting to train')
@@ -172,6 +188,8 @@ try:
         time_taken = time() - float(start_time)
         print('epoch took {}s'.format(time_taken))
         print("-"*100)
+
+        tensor_log(epoch, eval_results, train_loss)
 
         if not best_val_loss or best_val_loss > eval_results['total_loss']:
             best_val_loss = eval_results['total_loss']
