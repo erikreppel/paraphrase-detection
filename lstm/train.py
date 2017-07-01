@@ -21,6 +21,7 @@ test_path = '../small_data/test.csv'
 lr = 20
 batch_size = 32
 USE_GPU = True
+start = str(time())
 
 # Pre-process data ############################################################
 print('Pre-processing data')
@@ -149,7 +150,8 @@ def evaluate(X1, X2, y):
 def checkpoint(epoch, model):
     with open(
         os.path.join(checkpoint_path,
-                     'siamese_lstm_epoch{}.pt'.format(epoch)), 'wb') as f:
+                     'siamese_lstm_epoch-{}-{}.pt'.format(start,
+                                                          epoch)), 'wb') as f:
         torch.save(model, f)
 
 
