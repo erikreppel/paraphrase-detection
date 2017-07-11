@@ -2,6 +2,8 @@
 
 The goal of this project is to detect if two sentences are paraphrases.
 
+Done for CSC 485: Natural Language processing at the University of Victoria, taught by Dr. Alona Fyshe.
+
 ## Usage
 
 1. Install [conda](https://conda.io/docs/install/quick.html#id1) (I use miniconda on Linux)
