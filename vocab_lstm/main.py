@@ -18,6 +18,12 @@ from tensorboard_logger import configure, log_value
 GPU = torch.cuda.is_available()
 start = time()
 
+# Change these:
+tensor_board_log_dir = '/home/erik/Desktop/sia_logs/runs/' + str(start) + '/'
+checkpoint_path = '/home/erik/Desktop/sia_checkpoints'
+train_path = '../small_data/train.csv'
+test_path = '../small_data/test.csv'
+
 batch_size = 32
 n_epochs = 10000
 embedding_dim = 500
@@ -25,11 +31,6 @@ hidden_dim = 126
 layer_dim = 2
 output_dim = 1
 seq_dim = embedding_dim
-
-tensor_board_log_dir = '/home/erik/Desktop/sia_logs/runs/' + str(start) + '/'
-checkpoint_path = '/home/erik/Desktop/sia_checkpoints'
-train_path = '../small_data/train.csv'
-test_path = '../small_data/test.csv'
 
 configure(tensor_board_log_dir)
 

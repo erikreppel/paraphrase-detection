@@ -1,5 +1,7 @@
 # Paraphrase detection
 
+The goal of this project is to detect if two sentences are paraphrases.
+
 ## Usage
 
 1. Install [conda](https://conda.io/docs/install/quick.html#id1) (I use miniconda on Linux)
@@ -29,3 +31,16 @@ You will probably want to change the path variables such as train/test data, and
 ```
 $ tensorboard --logdir <path to tensorboard logs>
 ```
+
+## Methodology
+
+The basic approach:
+
+1. Create vectors from sentences
+2. Calculate distance
+3. Interperate boundary
+
+The logic behind this is that sentences that are similar are going to have
+vector representations that are similar.
+
+![count vectorization](images/count_vec_10_labeled.png)
