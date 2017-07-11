@@ -33,7 +33,7 @@ Validation accuracy
 ![lstm1_valid_accuracy](../images/lstm1_valid_accuracy.png)
 
 Validation loss
-![lstm1_valid_loss](../images/lstm1_valid_lss.png)
+![lstm1_valid_loss](../images/lstm1_valid_loss.png)
 
 Validation STD (just a check to make sure predictions are changing over time)
 ![lstm1_valid_std](../images/lstm1_valid_std.png)
