@@ -24,9 +24,7 @@ $ source activate ml
 
 You will probably want to change the path variables such as train/test data, and the checkpoint and logging directories.
 
-4. Run
-
-`jupyter notebook` to checkout the notebooks, `cd lstm && python train.py` to train the RNN. Might wanna change the variables at the top of `train.py`
+4. Run `jupyter notebook` to checkout the notebooks, `cd lstm && python train.py` to train the RNN. Might wanna change the variables at the top of `train.py`
 
 5. View logs on tensorboard
 
